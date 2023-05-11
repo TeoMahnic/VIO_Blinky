@@ -42,8 +42,6 @@ Values = [0] * 64
 def keyboardThread():
     global SignalIn
 
-    # Create Lock object
-    lock = threading.Lock()
     # Key input mask for first 8 bits
     key_msk = 0xff
     key = None
@@ -51,9 +49,8 @@ def keyboardThread():
     # Run while loop until main thread is stopped
     while threading.main_thread().is_alive():
         try:
-            with lock:
-                # Get character from terminal input (binary ASCII)
-                key = getch()
+            # Get character from terminal input (binary ASCII)
+            key = getch()
         except Exception:
             continue
 
