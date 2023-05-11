@@ -1,0 +1,36 @@
+project:
+  components:
+    - component: ARM::Device:Startup&Baremetal@1.2.0
+    - component: ARM::Native Driver:Timeout@1.0.0
+    - component: ARM::CMSIS:CORE@5.6.0
+    - component: ARM::Device:Definition@1.2.0
+    - component: ARM::Native Driver:SysCounter@1.1.0
+    - component: ARM::Native Driver:SysTimer@1.1.0
+    - component: ARM::CMSIS:RTOS2:FreeRTOS&Cortex-M@10.5.1
+    - component: ARM::RTOS&FreeRTOS:Core&Cortex-M@10.5.1
+    - component: ARM::RTOS&FreeRTOS:Config&CMSIS RTOS2@10.5.1
+    - component: ARM::RTOS&FreeRTOS:Event Groups@10.5.1
+    - component: ARM::RTOS&FreeRTOS:Timers@10.5.1
+    - component: ARM::RTOS&FreeRTOS:Heap&Heap_4@10.5.1
+    - component: ARM::CMSIS Driver:VIO:Custom@1.0.0
+    - component: ARM::Native Driver:IO@1.1.0
+  groups:
+    - files:
+        - file: ./README.md
+      group: Documentation
+    - files:
+        - file: ./main.c
+      group: Main
+    - files:
+        - file: ./Blinky.c
+      group: App
+    - files:
+        # - file: ./Driver/vio_V2M-MPS3-SSE-300.c
+        - file: ./Driver/vio_fvp.c
+        - file: ./Driver/arm_vio.h
+      group: VIO
+  processor:
+    trustzone: secure
+  misc:
+    - Link:
+        - '--diag_suppress 6314,6848'
