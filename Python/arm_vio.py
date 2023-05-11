@@ -11,6 +11,7 @@
 #More details.
 
 import logging
+import signal
 import threading
 from platform import system
 
@@ -56,7 +57,7 @@ def keyboardThread():
 
         # Break while loop on KeyboardInterrupt
         if key == b'\x03':
-            break
+            signal.raise_signal(signal.SIGTERM)
 
         # Subtract ASCII 0 from read character
         key_int = ord(key) - ord('0')
