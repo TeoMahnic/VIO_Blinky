@@ -65,7 +65,7 @@ def keyboardThread():
             continue
 
         # Write detected number to corresponding bit position in SignalIn
-        SignalIn ^= (1 << key_int) & key_msk
+        SignalIn |= (1 << key_int) & key_msk
         print(f"BTN: {SignalIn:08b}")
 
 
@@ -84,6 +84,7 @@ def rdSignal(mask):
     logging.info("Python function rdSignal() called")
 
     signal = SignalIn & mask
+    SignalIn &= ~mask
     logging.debug("Read signal: {}, mask: {}".format(signal, mask))
 
     return signal
