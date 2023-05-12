@@ -38,7 +38,7 @@ SignalIn  = 0
 # VIO Values
 Values = [0] * 64
 
-## Keyboard input thread
+## Keyboard input thread to control buttons
 # @return None on KeyboardInterrupt
 def keyboardThread():
     global SignalIn
@@ -103,8 +103,9 @@ def wrSignal(mask, signal):
     SignalOut |=  mask & signal
     logging.debug("Write signal: {}, mask: {}".format(signal, mask))
 
-    # Print LED state
-    print(f"LED: {SignalOut:08b}")
+    # Print LED state if any of the lower 8 bits has been modified
+    if (mask & 0xff) != 0:
+        print(f"LED: {SignalOut:08b}")
 
     return
 
