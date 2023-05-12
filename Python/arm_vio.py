@@ -38,6 +38,9 @@ SignalIn  = 0
 # VIO Values
 Values = [0] * 64
 
+# Thread lock
+thread_lock = threading.Lock()
+
 # Automated button flag
 button_is_delayed = False
 
@@ -49,7 +52,8 @@ def delayedButton():
     button_is_delayed = True
     # Delay execution for 5s
     threading.Event().wait(5)
-    SignalIn |= (1 << 0)
+    with thread_lock:
+        SignalIn |= (1 << 0)
     print(f"BTN: {SignalIn:08b}")
     button_is_delayed = False
 
@@ -82,7 +86,8 @@ def keyboardThread():
             continue
 
         # Write detected number to corresponding bit position in SignalIn
-        SignalIn |= (1 << key_int) & key_msk
+        with thread_lock:
+            SignalIn |= (1 << key_int) & key_msk
         print(f"BTN: {SignalIn:08b}")
 
 
