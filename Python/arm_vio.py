@@ -38,6 +38,22 @@ SignalIn  = 0
 # VIO Values
 Values = [0] * 64
 
+# Automated button flag
+button_is_delayed = False
+
+## Automatic press of Button0 after delay of 5s
+# @return None
+def delayedButton():
+    global SignalIn, button_is_delayed
+
+    button_is_delayed = True
+    # Delay execution for 5s
+    threading.Event().wait(5)
+    SignalIn |= (1 << 0)
+    print(f"BTN: {SignalIn:08b}")
+    button_is_delayed = False
+
+
 ## Keyboard input thread to control buttons
 # @return None on KeyboardInterrupt
 def keyboardThread():
@@ -106,6 +122,11 @@ def wrSignal(mask, signal):
     # Print LED state if any of the lower 8 bits has been modified
     if (mask & 0xff) != 0:
         print(f"LED: {SignalOut:08b}")
+
+    # Start delayed button press on LED1 event:
+    if not button_is_delayed:
+        if (mask & (1 << 1)) != 0 and signal != 0:
+            threading.Thread(target = delayedButton).start()
 
     return
 
