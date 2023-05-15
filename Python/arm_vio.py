@@ -42,20 +42,20 @@ Values = [0] * 64
 thread_lock = threading.Lock()
 
 # Automated button flag
-button_is_delayed = False
+automated_button_enabled = False
 
 ## Automatic press of Button0 after delay of 5s
 # @return None
-def delayedButton():
-    global SignalIn, button_is_delayed
+def automatedButton():
+    global SignalIn, automated_button_enabled
 
-    button_is_delayed = True
+    automated_button_enabled = True
     # Delay execution for 5s
     threading.Event().wait(5)
     with thread_lock:
         SignalIn |= (1 << 0)
     print(f"BTN: {SignalIn:08b}")
-    button_is_delayed = False
+    automated_button_enabled = False
 
 
 ## Keyboard input thread to control buttons
@@ -128,10 +128,10 @@ def wrSignal(mask, signal):
     if (mask & 0xff) != 0:
         print(f"LED: {SignalOut:08b}")
 
-    # Start delayed button press on LED1 event:
-    if not button_is_delayed:
+    # Start automated button press on LED1 event:
+    if not automated_button_enabled:
         if (mask & (1 << 1)) != 0 and signal != 0:
-            threading.Thread(target = delayedButton).start()
+            threading.Thread(target = automatedButton).start()
 
     return
 
