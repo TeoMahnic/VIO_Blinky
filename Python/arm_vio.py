@@ -44,6 +44,7 @@ thread_lock = threading.Lock()
 # Automated button flag
 automated_button_enabled = False
 
+
 ## Automatic press of Button0 after delay of delay_s
 # @return None
 def automatedButton(delay_s):
@@ -56,6 +57,15 @@ def automatedButton(delay_s):
         SignalIn |= (1 << 0)
     print(f"BTN: {SignalIn:08b}")
     automated_button_enabled = False
+
+
+## Automatically stop the model after delay_s
+# @return None
+def stopModel(delay_s):
+    # Delay execution for delay_s
+    threading.Event().wait(delay_s)
+    print(f"Stopping the model. (Timeout {delay_s} s reached)")
+    signal.raise_signal(signal.SIGTERM)
 
 
 ## Keyboard input thread to control buttons
@@ -97,6 +107,7 @@ def init():
     logging.info("Python function init() called")
     threading.Thread(target = keyboardThread).start()
     threading.Thread(target = automatedButton, args = [15]).start()
+    threading.Thread(target = stopModel, args = [25]).start()
 
 
 ## Read Signal
