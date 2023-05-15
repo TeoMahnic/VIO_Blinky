@@ -1,6 +1,6 @@
 # AVH VIO Blinky example
 
-The **Blinky** example is a simple demonstration of Python VIO module interaction with the application running on AVH model. Application VIO (LEDs, buttons) is therefore handled with Python script. Status of LEDs is printed to the terminal like `LED: 00000000`, where each digit represents one LED (e.g. LED: 0000000**1** means LED0 ON). The same applies to buttons which will be presented as `BTN: 00000000` in the terminal. 
+The **Blinky** example is a simple demonstration of Python VIO module interaction with the application running on AVH model. Application VIO (LEDs, buttons) is therefore handled with Python script. Status of LEDs is printed to the terminal like `LED: 00000000`, where each digit represents one LED (e.g. `LED: 00000001` means LED0 ON). The same applies to buttons, which will be presented as `BTN: 00000000` in the terminal. 
 
 ## Operation
 
