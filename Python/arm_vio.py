@@ -131,7 +131,7 @@ def wrSignal(mask, signal):
 
     # Start automated button press on LED1 event:
     if not automated_button_enabled:
-        if (mask & (1 << 1)) != 0:
+        if (mask & (1 << 1)) != 0 and (signal & (1 << 1) != 0):
             threading.Thread(target = automatedButton, args = [5]).start()
 
     return
