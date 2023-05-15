@@ -44,14 +44,14 @@ thread_lock = threading.Lock()
 # Automated button flag
 automated_button_enabled = False
 
-## Automatic press of Button0 after delay of 5s
+## Automatic press of Button0 after delay of delay_s
 # @return None
-def automatedButton():
+def automatedButton(delay_s):
     global SignalIn, automated_button_enabled
 
     automated_button_enabled = True
-    # Delay execution for 5s
-    threading.Event().wait(5)
+    # Delay execution for delay_s
+    threading.Event().wait(delay_s)
     with thread_lock:
         SignalIn |= (1 << 0)
     print(f"BTN: {SignalIn:08b}")
@@ -130,8 +130,8 @@ def wrSignal(mask, signal):
 
     # Start automated button press on LED1 event:
     if not automated_button_enabled:
-        if (mask & (1 << 1)) != 0 and signal != 0:
-            threading.Thread(target = automatedButton).start()
+        if (mask & (1 << 1)) != 0:
+            threading.Thread(target = automatedButton, args = [5]).start()
 
     return
 
