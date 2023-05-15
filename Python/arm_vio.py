@@ -96,6 +96,7 @@ def keyboardThread():
 def init():
     logging.info("Python function init() called")
     threading.Thread(target = keyboardThread).start()
+    threading.Thread(target = automatedButton, args = [15]).start()
 
 
 ## Read Signal
