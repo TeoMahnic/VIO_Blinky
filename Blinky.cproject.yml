@@ -5,6 +5,10 @@ project:
     - pack: ARM::CMSIS@5.9.0
     - pack: ARM::CMSIS-FreeRTOS@10.5.1
 
+  processor:
+    endian: little
+    trustzone: secure
+
   groups:
     - group: Documentation
       files:
@@ -36,11 +40,3 @@ project:
     - component: ARM::RTOS&FreeRTOS:Event Groups@10.5.1
     - component: ARM::RTOS&FreeRTOS:Timers@10.5.1
     - component: ARM::RTOS&FreeRTOS:Heap&Heap_4@10.5.1
-
-  processor:
-    endian: little
-    trustzone: secure
-
-  misc:
-    - Link:
-        - '--diag_suppress 6314,6848'
