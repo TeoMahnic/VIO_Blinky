@@ -20,7 +20,7 @@ Numeric keys from `0` to `7` on PC keyboard are mapped to `vioButton0` through `
 ## Linux machines
 Install Python `getch` package with:
 ```
-pip3 install getch
+pip3 install py-getch
 ```
 
 # Build
