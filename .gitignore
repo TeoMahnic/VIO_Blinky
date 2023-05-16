@@ -1,0 +1,6 @@
+# Ignore folders:
+tmp/
+out/
+
+# Ignore files:
+.clangd
