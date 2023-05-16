@@ -2,7 +2,7 @@
  * @file     vio.c
  * @brief    Virtual I/O implementation for V2M-MPS3-SSE-300
  * @version  V1.0.0
- * @date     23. March 2020
+ * @date     16. May 2023
  ******************************************************************************/
 /*
  * Copyright (c) 2019-2023 Arm Limited. All rights reserved.
@@ -50,8 +50,8 @@ vioLED7           | vioSignalOut.7 | User LED UL7                               
 #endif
 
 // VIO input, output variables
-__USED uint32_t      vioSignalIn;       // Memory for incoming signal
-__USED uint32_t      vioSignalOut;      // Memory for outgoing signal
+__USED uint32_t vioSignalIn;            // Memory for incoming signal
+__USED uint32_t vioSignalOut;           // Memory for outgoing signal
 
 // Initialize test input, output.
 void vioInit (void) {

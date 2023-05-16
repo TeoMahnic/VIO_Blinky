@@ -2,7 +2,7 @@
  * @file     vio_avh.c
  * @brief    Virtual I/O implementation for Arm Virtual Hardware (AVH)
  * @version  V1.0.0
- * @date     1. December 2021
+ * @date     16. May 2023
  ******************************************************************************/
 /*
  * Copyright (c) 2019-2023 Arm Limited. All rights reserved.
@@ -26,18 +26,18 @@
 #include "cmsis_vio.h"
 #include "arm_vio.h"
 
-#include "RTE_Components.h"             // Component selection
+#include "RTE_Components.h"                 // Component selection
 #include CMSIS_device_header
 
 // VIO input, output definitions
 #ifndef VIO_VALUE_NUM
-#define VIO_VALUE_NUM            3U     // number of values
+#define VIO_VALUE_NUM   3U                  // Number of values
 #endif
 
 // VIO input, output variables
-__USED uint32_t      vioSignalIn;                 // Memory for incoming signal
-__USED uint32_t      vioSignalOut;                // Memory for outgoing signal
-__USED int32_t       vioValue [VIO_VALUE_NUM];    // Memory for value used in vioGetValue/vioSetValue
+__USED uint32_t vioSignalIn;                // Memory for incoming signal
+__USED uint32_t vioSignalOut;               // Memory for outgoing signal
+__USED int32_t  vioValue [VIO_VALUE_NUM];   // Memory for value used in vioGetValue/vioSetValue
 
 // Initialize test input, output.
 void vioInit (void) {
@@ -45,7 +45,7 @@ void vioInit (void) {
   vioSignalIn  = 0U;
   vioSignalOut = 0U;
 
-  memset(vioValue,    0, sizeof(vioValue));
+  memset(vioValue, 0, sizeof(vioValue));
 }
 
 // Set signal output.
@@ -76,7 +76,7 @@ void vioSetValue (uint32_t id, int32_t value) {
   uint32_t index = id;
 
   if (index >= VIO_VALUE_NUM) {
-    return;                             /* return in case of out-of-range index */
+    return;                                 /* Return in case of out-of-range index */
   }
 
   vioValue[index] = value;
@@ -90,7 +90,7 @@ int32_t vioGetValue (uint32_t id) {
   int32_t  value = 0;
 
   if (index >= VIO_VALUE_NUM) {
-    return value;                       /* return default in case of out-of-range index */
+    return value;                           /* Return default in case of out-of-range index */
   }
 
   value = ARM_VIO->Value[index];
