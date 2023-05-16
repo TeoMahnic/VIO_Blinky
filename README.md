@@ -17,6 +17,12 @@ Numeric keys from `0` to `7` on PC keyboard are mapped to `vioButton0` through `
 - [CMSIS-Toolbox 1.5.0](https://github.com/Open-CMSIS-Pack/cmsis-toolbox/releases/tag/1.5.0) or later
 - Arm Compiler 6.18 or later
 
+## Linux machines
+Install Python `getch` package with:
+```
+pip3 install getch
+```
+
 # Build
 
 1. Use the `csolution` command to create `.cprj` project files.
