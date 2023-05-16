@@ -1,18 +1,11 @@
 # Ignore folders:
-tmp/
-out/
-RTE/_*
-
+/tmp/
+/out/
+/RTE/_*/
+/Python/__pycache__/
 
 # Ignore files:
 .clangd
 *.cbuild-idx.yml
 *.cbuild.yml
 *.cprj
-
-
-## Python.gitignore
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
