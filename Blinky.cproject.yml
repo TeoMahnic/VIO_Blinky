@@ -22,7 +22,7 @@ project:
     - group: VIO
       files:
         # - file: ./Driver/vio_V2M-MPS3-SSE-300.c
-        - file: ./Driver/vio_fvp.c
+        - file: ./Driver/vio_avh.c
         - file: ./Driver/arm_vio.h
 
   components:
