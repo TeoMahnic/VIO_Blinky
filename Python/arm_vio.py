@@ -1,6 +1,6 @@
 # Copyright (c) 2021-2023 Arm Limited. All rights reserved.
 
-# Virtual Streaming Interface instance 0 Python script
+# Virtual Input/Output Interface Python script
 
 ##@addtogroup arm_vio_py
 #  @{
@@ -64,8 +64,9 @@ def automatedButton(delay_s):
 def stopModel(delay_s):
     # Delay execution for delay_s
     threading.Event().wait(delay_s)
-    print(f"Stopping the model. (Timeout {delay_s} s reached)")
-    signal.raise_signal(signal.SIGTERM)
+    if threading.main_thread().is_alive():
+        print(f"Stopping the model. (Timeout {delay_s} s reached)")
+        signal.raise_signal(signal.SIGTERM)
 
 
 ## Keyboard input thread to control buttons
